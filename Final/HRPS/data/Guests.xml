@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_77" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="model.Guest">
+    <void property="address">
+     <string>123 Ang Mo Kio Avenue 1, #01-01</string>
+    </void>
+    <void property="contactNo">
+     <string>97654576</string>
+    </void>
+    <void property="country">
+     <string>Singapore</string>
+    </void>
+    <void property="creditCard">
+     <string>4444222244442222</string>
+    </void>
+    <void property="gender">
+     <string>Male</string>
+    </void>
+    <void property="guestId">
+     <int>1</int>
+    </void>
+    <void property="identity">
+     <string>S1234567A</string>
+    </void>
+    <void property="name">
+     <string>John Tan</string>
+    </void>
+    <void property="nationality">
+     <string>Singapore Citizen</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Guest">
+    <void property="address">
+     <string>5 Diamond Road</string>
+    </void>
+    <void property="contactNo">
+     <string>91114576</string>
+    </void>
+    <void property="country">
+     <string>Singapore</string>
+    </void>
+    <void property="creditCard">
+     <string>8888555544442222</string>
+    </void>
+    <void property="gender">
+     <string>Male</string>
+    </void>
+    <void property="guestId">
+     <int>2</int>
+    </void>
+    <void property="identity">
+     <string>S8765234B</string>
+    </void>
+    <void property="name">
+     <string>Christopher Lim</string>
+    </void>
+    <void property="nationality">
+     <string>Singapore Citizen</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Guest">
+    <void property="address">
+     <string>78 Grayson Lane</string>
+    </void>
+    <void property="contactNo">
+     <string>92224576</string>
+    </void>
+    <void property="country">
+     <string>Singapore</string>
+    </void>
+    <void property="creditCard">
+     <string>6666444477772222</string>
+    </void>
+    <void property="gender">
+     <string>Male</string>
+    </void>
+    <void property="guestId">
+     <int>3</int>
+    </void>
+    <void property="identity">
+     <string>S8756234G</string>
+    </void>
+    <void property="name">
+     <string>Javier Goh</string>
+    </void>
+    <void property="nationality">
+     <string>Singapore Citizen</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Guest">
+    <void property="address">
+     <string>BLK 123 Jalan Bahar #01-01</string>
+    </void>
+    <void property="contactNo">
+     <string>98765432</string>
+    </void>
+    <void property="country">
+     <string>Singapore</string>
+    </void>
+    <void property="creditCard">
+     <string>1234567890123456</string>
+    </void>
+    <void property="gender">
+     <string>Male</string>
+    </void>
+    <void property="guestId">
+     <int>4</int>
+    </void>
+    <void property="identity">
+     <string>S1234567B</string>
+    </void>
+    <void property="name">
+     <string>Tester</string>
+    </void>
+    <void property="nationality">
+     <string>Singaporean</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Guest">
+    <void property="address">
+     <string>490 Admiralty Link </string>
+    </void>
+    <void property="contactNo">
+     <string>87654321</string>
+    </void>
+    <void property="country">
+     <string>Singapore</string>
+    </void>
+    <void property="creditCard">
+     <string>1234567809876543</string>
+    </void>
+    <void property="gender">
+     <string>Male</string>
+    </void>
+    <void property="guestId">
+     <int>5</int>
+    </void>
+    <void property="identity">
+     <string>S1234561B</string>
+    </void>
+    <void property="name">
+     <string>Pikachu</string>
+    </void>
+    <void property="nationality">
+     <string>Singaporean</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Guest">
+    <void property="address">
+     <string>Blk 123 Jalan Bahar #05-05</string>
+    </void>
+    <void property="contactNo">
+     <string>98765432</string>
+    </void>
+    <void property="country">
+     <string>Singapore</string>
+    </void>
+    <void property="creditCard">
+     <string>1234567898765432</string>
+    </void>
+    <void property="gender">
+     <string>Male</string>
+    </void>
+    <void property="guestId">
+     <int>6</int>
+    </void>
+    <void property="identity">
+     <string>S1234567B</string>
+    </void>
+    <void property="name">
+     <string>Hui</string>
+    </void>
+    <void property="nationality">
+     <string>Singaporean</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Guest">
+    <void property="address">
+     <string>Blk 5 Yishun Ave 5 #01-01</string>
+    </void>
+    <void property="contactNo">
+     <string>87654321</string>
+    </void>
+    <void property="country">
+     <string>Singapore</string>
+    </void>
+    <void property="creditCard">
+     <string>9876234567852345</string>
+    </void>
+    <void property="gender">
+     <string>Male</string>
+    </void>
+    <void property="guestId">
+     <int>7</int>
+    </void>
+    <void property="identity">
+     <string>S9876543Z</string>
+    </void>
+    <void property="name">
+     <string>Tester 1</string>
+    </void>
+    <void property="nationality">
+     <string>Singaporean</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_77" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="model.Reservation">
+    <void property="baseRate">
+     <double>540.0</double>
+    </void>
+    <void property="checkIn">
+     <object class="java.util.Date">
+      <long>1459863114629</long>
+     </object>
+    </void>
+    <void property="checkOut">
+     <object class="java.util.Date">
+      <long>1460437200000</long>
+     </object>
+    </void>
+    <void property="guestId">
+     <int>1</int>
+    </void>
+    <void property="id">
+     <int>1</int>
+    </void>
+    <void property="numOfAdults">
+     <int>2</int>
+    </void>
+    <void property="numOfChildren">
+     <int>2</int>
+    </void>
+    <void property="roomNumber">
+     <string>0708</string>
+    </void>
+    <void property="status">
+     <string>Checked-in</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Reservation">
+    <void property="baseRate">
+     <double>210.0</double>
+    </void>
+    <void property="checkIn">
+     <object class="java.util.Date">
+      <long>1459780995161</long>
+     </object>
+    </void>
+    <void property="checkOut">
+     <object class="java.util.Date">
+      <long>1460216607324</long>
+     </object>
+    </void>
+    <void property="guestId">
+     <int>2</int>
+    </void>
+    <void property="id">
+     <int>2</int>
+    </void>
+    <void property="numOfAdults">
+     <int>1</int>
+    </void>
+    <void property="numOfChildren">
+     <int>1</int>
+    </void>
+    <void property="orders">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object class="model.RoomServiceOrderItem">
+        <void property="description">
+         <string>A classic recipe of sliced fresh Mozzarella cheese, juicy tomatoes and fresh basil, baked in a tangy tomato sauce.</string>
+        </void>
+        <void property="name">
+         <string>Margherita Classic Pizza</string>
+        </void>
+        <void property="preparation">
+         <string>Extra spicy</string>
+        </void>
+        <void property="price">
+         <double>26.0</double>
+        </void>
+        <void property="quantity">
+         <int>3</int>
+        </void>
+        <void property="status">
+         <string>Confirmed</string>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="payment">
+     <object class="model.Payment">
+      <void property="amount">
+       <double>1309.4350000000002</double>
+      </void>
+      <void property="billingAddr">
+       <string>5 Diamond Road</string>
+      </void>
+      <void property="id">
+       <long>1460216607325</long>
+      </void>
+      <void property="mode">
+       <string>Credit Card</string>
+      </void>
+      <void property="status">
+       <string>Success</string>
+      </void>
+     </object>
+    </void>
+    <void property="roomNumber">
+     <string>0302</string>
+    </void>
+    <void property="status">
+     <string>Expired</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Reservation">
+    <void property="baseRate">
+     <double>540.0</double>
+    </void>
+    <void property="checkIn">
+     <object class="java.util.Date">
+      <long>1459781514173</long>
+     </object>
+    </void>
+    <void property="checkOut">
+     <object class="java.util.Date">
+      <long>1460178000000</long>
+     </object>
+    </void>
+    <void property="guestId">
+     <int>2</int>
+    </void>
+    <void property="id">
+     <int>3</int>
+    </void>
+    <void property="numOfAdults">
+     <int>1</int>
+    </void>
+    <void property="numOfChildren">
+     <int>1</int>
+    </void>
+    <void property="orders">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object class="model.RoomServiceOrderItem">
+        <void property="description">
+         <string>Layers of Noodles, Marinara Sauce, ground beef and pork, and four delicious cheeses.</string>
+        </void>
+        <void property="name">
+         <string>Baked Lasagna</string>
+        </void>
+        <void property="preparation">
+         <string>Extra chilli</string>
+        </void>
+        <void property="price">
+         <double>18.0</double>
+        </void>
+        <void property="quantity">
+         <int>2</int>
+        </void>
+        <void property="status">
+         <string>Delivered</string>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="roomNumber">
+     <string>0706</string>
+    </void>
+    <void property="status">
+     <string>Checked-in</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Reservation">
+    <void property="baseRate">
+     <double>180.0</double>
+    </void>
+    <void property="checkIn">
+     <object class="java.util.Date">
+      <long>1459935744607</long>
+     </object>
+    </void>
+    <void property="checkOut">
+     <object class="java.util.Date">
+      <long>1460178000000</long>
+     </object>
+    </void>
+    <void property="guestId">
+     <int>3</int>
+    </void>
+    <void property="id">
+     <int>4</int>
+    </void>
+    <void property="numOfAdults">
+     <int>1</int>
+    </void>
+    <void property="numOfChildren">
+     <int>1</int>
+    </void>
+    <void property="orders">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object class="model.RoomServiceOrderItem">
+        <void property="description">
+         <string>Tender chicken ham combined with sweet and succulent pineapple chunks for a taste of the good old days.</string>
+        </void>
+        <void property="name">
+         <string>Hawaiian Classic Pizza</string>
+        </void>
+        <void property="preparation">
+         <string>More ham and pineapple</string>
+        </void>
+        <void property="price">
+         <double>25.0</double>
+        </void>
+        <void property="quantity">
+         <int>2</int>
+        </void>
+        <void property="status">
+         <string>Delivered</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.RoomServiceOrderItem">
+        <void property="description">
+         <string>Layers of Noodles, Marinara Sauce, ground beef and pork, and four delicious cheeses.</string>
+        </void>
+        <void property="name">
+         <string>Baked Lasagna</string>
+        </void>
+        <void property="preparation">
+         <string>More sauce and cheese</string>
+        </void>
+        <void property="price">
+         <double>18.0</double>
+        </void>
+        <void property="quantity">
+         <int>5</int>
+        </void>
+        <void property="status">
+         <string>Delivered</string>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="roomNumber">
+     <string>0301</string>
+    </void>
+    <void property="status">
+     <string>Checked-in</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Reservation">
+    <void property="baseRate">
+     <double>550.0</double>
+    </void>
+    <void property="checkIn">
+     <object class="java.util.Date">
+      <long>1460782800000</long>
+     </object>
+    </void>
+    <void property="checkOut">
+     <object class="java.util.Date">
+      <long>1461128400000</long>
+     </object>
+    </void>
+    <void property="guestId">
+     <int>2</int>
+    </void>
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="numOfAdults">
+     <int>2</int>
+    </void>
+    <void property="numOfChildren">
+     <int>3</int>
+    </void>
+    <void property="roomNumber">
+     <string>0607</string>
+    </void>
+    <void property="status">
+     <string>Reserved</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Reservation">
+    <void property="baseRate">
+     <double>260.0</double>
+    </void>
+    <void property="checkIn">
+     <object class="java.util.Date">
+      <long>1461646800000</long>
+     </object>
+    </void>
+    <void property="checkOut">
+     <object class="java.util.Date">
+      <long>1461819600000</long>
+     </object>
+    </void>
+    <void property="guestId">
+     <int>2</int>
+    </void>
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="numOfAdults">
+     <int>2</int>
+    </void>
+    <void property="numOfChildren">
+     <int>1</int>
+    </void>
+    <void property="roomNumber">
+     <string>0602</string>
+    </void>
+    <void property="status">
+     <string>Reserved</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.Reservation">
+    <void property="baseRate">
+     <double>540.0</double>
+    </void>
+    <void property="checkIn">
+     <object class="java.util.Date">
+      <long>1460264400000</long>
+     </object>
+    </void>
+    <void property="checkOut">
+     <object class="java.util.Date">
+      <long>1460955600000</long>
+     </object>
+    </void>
+    <void property="guestId">
+     <int>3</int>
+    </void>
+    <void property="id">
+     <int>7</int>
+    </void>
+    <void property="numOfAdults">
+     <int>2</int>
+    </void>
+    <void property="numOfChildren">
+     <int>1</int>
+    </void>
+    <void property="roomNumber">
+     <string>0702</string>
+    </void>
+    <void property="status">
+     <string>Expired</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

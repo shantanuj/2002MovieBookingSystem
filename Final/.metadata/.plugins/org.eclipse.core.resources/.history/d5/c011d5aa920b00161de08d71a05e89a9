@@ -1,0 +1,468 @@
+package main;
+import model.Storage;
+import model.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+
+public class Console {
+    private static Properties hotel;
+    private static final int HOURS_TO_EXPIRE = 1;
+    private static Timer timer;
+
+    public static void main(String[] args) throws IOException {
+        startUp();
+        printTitle("Welcome to Hotel Reservation & Payment System");
+
+        int option = -1;
+        while (option != 0) {
+            printTitle("Main Menu");
+            print("(1) Guests");
+            print("(2) Rooms");
+            print("(3) Reservations");
+            print("(4) Room Service");
+            print("(5) Check-in");
+            print("(6) Check-out");
+            print("(7) Walk-in");
+            print("(8) Reports");
+            print("(0) Exit");
+
+            option = getOptionFromUser();
+
+            switch (option) {
+                case 1:
+                    // Enters Guest Menu
+                    new Guests();
+                    break;
+                case 2:
+                    // Enters Rooms Menu
+                    new Rooms();
+                    break;
+                case 3:
+                    // Enters Reservations Menu
+                    new Reservations(false);
+                    break;
+                case 4:
+                    // Enters Room Service Menu
+                    new RoomService();
+                    break;
+                case 5:
+                    // Check-In
+                    new CheckInOut().CheckIn();
+                    break;
+                case 6:
+                    // Check-Out
+                    new CheckInOut().CheckOut();
+                    break;
+                case 7:
+                    // Walk-In
+                    new Reservations(true).CreateReservation(true);
+                    break;
+                case 8:
+                    // Reports
+                    new Reports();
+                    break;
+
+                default:
+            }
+        }
+
+        printTitle("Goodbye. :)");
+        shutDown();
+    }
+
+    /**
+     * Start up of the application.
+     */
+    private static void startUp() {
+        Guests.guestList = Storage.getGuestList();
+        Rooms.roomList = Storage.getRoomList();
+        Reservations.reservationList = Storage.getReservationList();
+        RoomService.roomServiceItemList = Storage.getRoomServiceItemList();
+        hotel = Storage.getProperties();
+        if (hotel != null) {
+            Storage.singleRate = Double.parseDouble(
+                    hotel.getProperty(Storage.SINGLERATE));
+            Storage.singleSeaRate = Double.parseDouble(
+                    hotel.getProperty(Storage.SINGLESEARATE));
+            Storage.singleGardenRate = Double.parseDouble(
+                    hotel.getProperty(Storage.SINGLEGARDENRATE));
+            Storage.doubleRate = Double.parseDouble(
+                    hotel.getProperty(Storage.DOUBLERATE));
+            Storage.doubleSeaRate = Double.parseDouble(
+                    hotel.getProperty(Storage.DOUBLESEARATE));
+            Storage.doubleGardenRate = Double.parseDouble(
+                    hotel.getProperty(Storage.DOUBLEGARDENRATE));
+            Storage.deluxeRate = Double.parseDouble(
+                    hotel.getProperty(Storage.DELUXERATE));
+            Storage.deluxeSeaRate = Double.parseDouble(
+                    hotel.getProperty(Storage.DELUXESEARATE));
+            Storage.deluxeGardenRate = Double.parseDouble(
+                    hotel.getProperty(Storage.DELUXEGARDENRATE));
+            Storage.vipSuiteRate = Double.parseDouble(
+                    hotel.getProperty(Storage.VIPSUITERATE));
+            Storage.vipSuiteSeaRate = Double.parseDouble(
+                    hotel.getProperty(Storage.VIPSUITESEARATE));
+            Storage.vipSuiteGardenRate = Double.parseDouble(
+                    hotel.getProperty(Storage.VIPSUITEGARDENRATE));
+        }
+
+        refresh();
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                refresh();
+            }
+        }, 0, 1000);
+    }
+
+    /**
+     * Shut down of the application.
+     */
+    private static void shutDown() {
+        timer.cancel();
+        Guests.updateGuestList();
+        Rooms.updateRoomList();
+        Reservations.updateReservationList();
+        RoomService.updateRoomServiceItemList();
+        updateHotelProperties();
+    }
+
+    /**
+     * Update hotel properties.
+     */
+    public static void updateHotelProperties() {
+        hotel.setProperty(Storage.SINGLERATE, String.valueOf(Storage.singleRate));
+        hotel.setProperty(Storage.SINGLESEARATE, String.valueOf(Storage.singleSeaRate));
+        hotel.setProperty(Storage.SINGLEGARDENRATE, String.valueOf(Storage.singleGardenRate));
+        hotel.setProperty(Storage.DOUBLERATE, String.valueOf(Storage.doubleRate));
+        hotel.setProperty(Storage.DOUBLESEARATE, String.valueOf(Storage.doubleSeaRate));
+        hotel.setProperty(Storage.DOUBLEGARDENRATE, String.valueOf(Storage.doubleGardenRate));
+        hotel.setProperty(Storage.DELUXERATE, String.valueOf(Storage.deluxeRate));
+        hotel.setProperty(Storage.DELUXESEARATE, String.valueOf(Storage.deluxeSeaRate));
+        hotel.setProperty(Storage.DELUXEGARDENRATE, String.valueOf(Storage.deluxeGardenRate));
+        hotel.setProperty(Storage.VIPSUITERATE, String.valueOf(Storage.vipSuiteRate));
+        hotel.setProperty(Storage.VIPSUITESEARATE, String.valueOf(Storage.vipSuiteSeaRate));
+        hotel.setProperty(Storage.VIPSUITEGARDENRATE, String.valueOf(Storage.vipSuiteGardenRate));
+        Storage.storeProperties(hotel);
+    }
+
+    /**
+     * Refresh data.
+     */
+    private static void refresh() {
+        for (Reservation reservation : Reservations.reservationList) {
+            // Update past reservations to expired
+            if (getDifferenceDays(reservation.getCheckOut(), new Date()) >= 1) {
+                if (!checkIfTwoDatesSameDay(reservation.getCheckOut(), new Date())) {
+                	if ((!reservation.getStatus().equalsIgnoreCase(ReservationStatus.CHECKIN.getStatus())) &&
+                			(!reservation.getStatus().equalsIgnoreCase(ReservationStatus.CHECKOUT.getStatus())))  {
+                		reservation.setStatus(ReservationStatus.EXPIRED.getStatus());
+                		Rooms.updateRoomStatus(reservation.getRoomNumber(),
+                				AvailabilityStatus.VACANT.getStatus());
+                	}
+                }
+            }
+
+            if (checkIfTwoDatesSameDay(reservation.getCheckIn(), new Date())) {
+                if (reservation.getStatus().equalsIgnoreCase(ReservationStatus.RESERVED.getStatus())) {
+                    Rooms.updateRoomStatus(reservation.getRoomNumber(),
+                            AvailabilityStatus.RESERVED.getStatus());
+                }
+            }
+
+            // Update rooms of current reservations
+            if (isNowBetweenTwoDates(reservation.getCheckIn(), reservation.getCheckOut())) {
+                // if reservation status is reserved,
+                // checks if check-in time has passed for defined hours and update to expired
+                if (reservation.getStatus().equalsIgnoreCase(ReservationStatus.RESERVED.getStatus())) {
+                    Calendar now = Calendar.getInstance();
+                    now.setTime(new Date());
+                    Calendar resCalendar = Calendar.getInstance();
+                    resCalendar.setTime(reservation.getCheckIn());
+                    double hours = (now.getTimeInMillis() - resCalendar.getTimeInMillis()) / 1000 / 60 / 60;
+                    if (hours > HOURS_TO_EXPIRE){
+                        reservation.setStatus(ReservationStatus.EXPIRED.getStatus());
+                        Rooms.updateRoomStatus(reservation.getRoomNumber(),
+                                AvailabilityStatus.EXPIRED.getStatus());
+                    }
+                }
+                // Update room to occupied if reservation status is checked-in
+                if (reservation.getStatus().equalsIgnoreCase(ReservationStatus.CHECKIN.getStatus()))
+                    Rooms.updateRoomStatus(reservation.getRoomNumber(),
+                            AvailabilityStatus.OCCUPIED.getStatus());
+                // Update room to vacant if reservation status is checked-out
+                if (reservation.getStatus().equalsIgnoreCase(ReservationStatus.CHECKOUT.getStatus()))
+                    Rooms.updateRoomStatus(reservation.getRoomNumber(),
+                            AvailabilityStatus.VACANT.getStatus());
+            }
+        }
+    }
+
+    /**
+     * Prints out a styled title for the console.
+     * @param input title to be printed
+     */
+    public static void printTitle(String input) {
+        System.out.println();
+        printDivider();
+        System.out.println("** " + input);
+        printDivider();
+    }
+
+    /**
+     * Prints out a divider.
+     */
+    public static void printDivider() {
+        System.out.println("***********************************" +
+                "********************************************");
+    }
+
+    /**
+     * Prints out text to the console with a new line.
+     * @param input text to be printed.
+     */
+    public static void print(String input) {
+        System.out.println(input);
+    }
+
+    /**
+     * Request user input string from the console.
+     * @param instruction instruction for the user input
+     * @return user input
+     */
+    public static String getInputFromUser(String instruction) {
+        System.out.print(instruction + ": ");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    /**
+     * Request user option from the console.
+     * @return user option, otherwise 0 if not integer
+     */
+    public static int getOptionFromUser() {
+        System.out.print("Select Option: ");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextInt();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+        /**
+         * Request user option from the console.
+         * @return user option, otherwise -1 if not integer
+         * then page refresh
+         */
+        public static int getOptionFromUserRefresh() {
+            System.out.print("Select Option: ");
+            Scanner scanner = new Scanner(System.in);
+            try {
+                return scanner.nextInt();
+            } catch (Exception e) {
+            	System.out.println("Invalid Option");
+                return -1;
+            }
+    }
+
+    /**
+     * Request user input double from the console.
+     * @param instruction instruction for the user input
+     * @return user input, otherwise 0.0 if not double
+     */
+    public static double getDoubleFromUser(String instruction) {
+        System.out.print(instruction + ": ");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextDouble();
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
+
+    /**
+     * Request user input integer from the console.
+     * @param instruction instruction for the user input
+     * @return user input, otherwise 0 if not integer
+     */
+    public static int getIntegerFromUser(String instruction) {
+        System.out.print(instruction + ": ");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextInt();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Request user to press enter to continue.
+     */
+    public static void enterToContinue() {
+        System.out.print("Please enter to continue...");
+        new Scanner(System.in).nextLine();
+    }
+
+    /**
+     * Translate boolean to yes or no.
+     * @param trueOrFalse boolean
+     * @return yes or no
+     */
+    public static String booleanToYesNo(boolean trueOrFalse) {
+        return trueOrFalse ? "Yes" : "No";
+    }
+
+    /**
+     * Checks if input contains true or false keywords.
+     * @param s input
+     * @return true if pass validation, otherwise false
+     */
+    public static boolean validateInputTrueFalse(String s) {
+        boolean validate = false;
+        Set<String> trueFalse = new HashSet<>(Arrays.asList("1", "0", "true", "false", "y", "n", "yes", "no"));
+        if (trueFalse.contains(s.toLowerCase().trim()))
+            validate = true;
+        return validate;
+    }
+
+    /**
+     * Translate a string to boolean.
+     * @param s input string
+     * @return boolean
+     */
+    public static boolean stringToBool(String s) {
+        boolean result = false;
+        s = s.toLowerCase();
+        Set<String> trueSet = new HashSet<>(Arrays.asList("1", "true", "y", "yes"));
+        Set<String> falseSet = new HashSet<>(Arrays.asList("0", "false", "n", "no"));
+
+        if (trueSet.contains(s))
+            result = true;
+        if (falseSet.contains(s))
+            result = false;
+
+        return result;
+    }
+
+    /**
+     * Translate input to gender
+     * @param s input
+     * @return "Male" or "Female", otherwise "Others"
+     */
+    public static String translateToGender(String s) {
+        s = s.toLowerCase();
+        Set<String> maleSet = new HashSet<>(Arrays.asList("1", "m", "male", "boy", "b", "man"));
+        Set<String> femaleSet = new HashSet<>(Arrays.asList("0", "f","female", "girl", "g", "woman"));
+
+        if (maleSet.contains(s))
+            return "Male";
+        if (femaleSet.contains(s))
+            return "Female";
+
+        return "Others";
+    }
+
+    /**
+     * Get the difference in days between two dates.
+     * @param d1 first date
+     * @param d2 second date
+     * @return difference in days
+     */
+    public static int getDifferenceDays(Date d1, Date d2) {
+        /**long diff = d2.getTime() - d1.getTime();
+        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);**/
+        long diff = d2.getTime() - d1.getTime();
+        return (int)Math.ceil((float) diff / (1000 * 60 * 60 * 24));
+    }
+
+    /**
+     * Checks if two dates are of the same day.
+     * @param d1 first date
+     * @param d2 second date
+     * @return true if same day, otherwise false
+     */
+    public static boolean checkIfTwoDatesSameDay(Date d1, Date d2) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(d1);
+        cal2.setTime(d2);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+    }
+
+    /**
+     * Checks if today falls between two dates.
+     * @param d1 first date
+     * @param d2 second date
+     * @return true if today falls between two dates, otherwise false
+     */
+    public static boolean isNowBetweenTwoDates(Date d1, Date d2) {
+        return !(new Date().before(d1) || new Date().after(d2));
+    }
+
+    /**
+     * Checks if two dates overlap.
+     * @param startDate1 first start date
+     * @param endDate1 first end date
+     * @param startDate2 second start date
+     * @param endDate2 second end date
+     * @return true if overlap, otherwise false
+     */
+    public static boolean checkIfTwoDatesOverlap(Date startDate1, Date endDate1,
+                                                 Date startDate2, Date endDate2) {
+        return startDate1.getTime() <= endDate2.getTime()
+                && startDate2.getTime() <= endDate1.getTime();
+    }
+    
+    
+    /**
+	 * Get an unique id based on the contents of a file.
+	 * @return a int number (unique id)
+	 * @throws IOException
+	 */
+	public static int getNextUniqueId() throws IOException {
+		FileReader in = null;
+		FileWriter out = null;
+	
+		try {			
+			in = new FileReader("data/id.dat");				
+			BufferedReader bufferedReader = new BufferedReader(in);
+			
+			int id;
+			try {
+				id = Integer.parseInt(bufferedReader.readLine());
+			} catch (Exception ex) {
+				Console.print(ex.getMessage());
+				Console.print("Unable to Parse");
+				id = 1;
+			}
+			in.close();
+			
+			out = new FileWriter("data/id.dat");
+			out.write(Integer.toString(id + 1));
+			out.close();
+			
+			return id;
+		}
+		catch (FileNotFoundException e) {
+			out = new FileWriter("data/id.dat");
+			out.write(Integer.toString(2));
+			out.close();
+			return 1;
+		}
+		finally {			
+			if (in != null) {
+		        in.close();
+			}
+			if (out != null) {
+		        out.close();
+			}
+		}
+	}
+}

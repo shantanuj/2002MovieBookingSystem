@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_77" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="model.room.SingleRoom">
+    <void property="availability">
+     <string>Under Maintenance</string>
+    </void>
+    <void property="rate">
+     <double>100.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0201</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleSeaRoom">
+    <void property="availability">
+     <string>Occupied</string>
+    </void>
+    <void property="rate">
+     <double>130.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0202</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>100.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0203</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleSeaRoom">
+    <void property="availability">
+     <string>Under Maintenance</string>
+    </void>
+    <void property="rate">
+     <double>130.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0204</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>100.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0205</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleSeaRoom">
+    <void property="availability">
+     <string>Under Maintenance</string>
+    </void>
+    <void property="rate">
+     <double>130.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0206</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleGardenRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>140.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0207</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleGardenRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>140.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0208</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>100.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0209</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>130.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0210</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>130.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0211</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>100.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0212</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleRoom">
+    <void property="availability">
+     <string>Occupied</string>
+    </void>
+    <void property="rate">
+     <double>180.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0301</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>210.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0302</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>180.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0303</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleSeaRoom">
+    <void property="availability">
+     <string>Under Maintenance</string>
+    </void>
+    <void property="rate">
+     <double>210.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0304</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>180.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0305</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>210.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0306</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleGardenRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>220.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0307</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>210.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0308</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleRoom">
+    <void property="availability">
+     <string>Occupied</string>
+    </void>
+    <void property="rate">
+     <double>180.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0309</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>210.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0310</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>210.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0311</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>230.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0501</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>260.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0502</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>230.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0503</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>260.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0504</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeRoom">
+    <void property="availability">
+     <string>Under Maintenance</string>
+    </void>
+    <void property="rate">
+     <double>230.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0505</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>260.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0506</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeGardenRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>260.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0507</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>260.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0508</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>230.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0509</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>260.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0510</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>230.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0601</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DeluxeSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>260.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0602</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>130.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0603</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>100.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0604</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.SingleSeaRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>130.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0605</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleGardenRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>220.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0606</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuiteGarden">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>550.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0607</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.DoubleRoom">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>180.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0608</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuite">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>500.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0701</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuiteSea">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>540.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0702</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuite">
+    <void property="availability">
+     <string>Occupied</string>
+    </void>
+    <void property="rate">
+     <double>500.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0703</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuite">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>500.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0705</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuiteSea">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>540.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0706</string>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuiteGarden">
+    <void property="availability">
+     <string>Under Maintenance</string>
+    </void>
+    <void property="rate">
+     <double>550.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0707</string>
+    </void>
+    <void property="smoking">
+     <boolean>true</boolean>
+    </void>
+    <void property="wifi">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.room.VIPSuiteSea">
+    <void property="availability">
+     <string>Vacant</string>
+    </void>
+    <void property="rate">
+     <double>540.0</double>
+    </void>
+    <void property="roomNumber">
+     <string>0708</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

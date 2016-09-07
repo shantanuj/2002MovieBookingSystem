@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_77" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="model.RoomServiceItem">
+    <void property="description">
+     <string>FILET MIGNON COATED WITH PEPPECRONS</string>
+    </void>
+    <void property="name">
+     <string>STEAK AU POIVRE</string>
+    </void>
+    <void property="price">
+     <double>45.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.RoomServiceItem">
+    <void property="description">
+     <string>A classic recipe of sliced fresh Mozzarella cheese, juicy tomatoes and fresh basil, baked in a tangy tomato sauce.</string>
+    </void>
+    <void property="name">
+     <string>Margherita Classic Pizza</string>
+    </void>
+    <void property="price">
+     <double>26.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.RoomServiceItem">
+    <void property="description">
+     <string>Tender chicken ham combined with sweet and succulent pineapple chunks for a taste of the good old days.</string>
+    </void>
+    <void property="name">
+     <string>Hawaiian Classic Pizza</string>
+    </void>
+    <void property="price">
+     <double>25.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.RoomServiceItem">
+    <void property="description">
+     <string>Layers of Noodles, Marinara Sauce, ground beef and pork, and four delicious cheeses.</string>
+    </void>
+    <void property="name">
+     <string>Baked Lasagna</string>
+    </void>
+    <void property="price">
+     <double>18.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.RoomServiceItem">
+    <void property="description">
+     <string>CHOICE OF TOPPINGS INCLUDE: MAPLE SYRUP, STRAWBERRY SAUCE, NUTELLA, YOGURT</string>
+    </void>
+    <void property="name">
+     <string>PANCAKES</string>
+    </void>
+    <void property="price">
+     <double>14.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.RoomServiceItem">
+    <void property="description">
+     <string>WHOLEWHEAT BREAD WITH ROASTED CHICKEN, EGG MAYO, TOMATOES, BACON AND CHEESE</string>
+    </void>
+    <void property="name">
+     <string>CLUB SANDWICH</string>
+    </void>
+    <void property="price">
+     <double>12.0</double>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

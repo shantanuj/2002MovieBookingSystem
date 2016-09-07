@@ -1,0 +1,324 @@
+package main;
+import model.Storage;
+import model.*;
+import model.room.Room;
+
+import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Reservations {
+	public static List<Reservation> reservationList;
+	private static int counter = 1;
+
+	public Reservations(boolean API) throws IOException {
+		// Get largest incremental counter and set to +1
+		
+		if (!API) {
+			int option = -1;
+			while (option != 0) {
+				Console.printTitle("Reservations Menu");
+				Console.print("(1) Create Reservation");
+				Console.print("(2) List Reservations");
+				Console.print("(3) Print Reservation");
+				Console.print("(4) Cancelled Reservation");
+				Console.print("(0) Return to Main Menu");
+
+				option = Console.getOptionFromUserRefresh();
+
+				switch (option) {
+				case 1:
+					CreateReservation(false);
+					break;
+				case 2:
+					ListReservations();
+					break;
+				case 3:
+					PrintReservation();
+					break;
+				case 4:
+					CancelReservation();
+					break;
+				default:
+				}
+			}
+		}
+	}
+
+	/**
+	 * Create reservation.
+	 * 
+	 * @param walkIn
+	 *            is a walk-in reservation
+	 * @throws IOException 
+	 */
+	public void CreateReservation(boolean walkIn) throws IOException {
+		if (walkIn)
+			Console.printTitle("Create Walk-in Reservation");
+		else
+			Console.printTitle("Create Reservation");
+
+		int guestId = Console.getIntegerFromUser("Guest ID");
+		Guest guest = Guests.searchGuestsById(guestId);
+		if (guest != null) {
+			Reservation reservation = new Reservation();
+			Console.printTitle("Guest Details");
+			Guests.guestDetails(guestId);
+			Console.printDivider();
+			boolean confirm = Console.stringToBool(Console.getInputFromUser("Correct information? Y (yes) or N (no)"));
+			if (!confirm) {
+				return;
+			}
+			Console.printDivider();
+			reservation.setGuestId(guest.getGuestId());
+			int numOfAdults = Console.getIntegerFromUser("No. of Adults");
+			reservation.setNumOfAdults(numOfAdults);
+			int numOfChildren = Console.getIntegerFromUser("No. of Children");
+			reservation.setNumOfChildren(numOfChildren);
+
+			int occupants = reservation.getNumOfAdults() + reservation.getNumOfChildren() + 1;
+
+			// Get all vacant rooms
+			// and filter out rooms' max lesser than occupants
+			List<Room> suitableVacantRooms = Rooms.getAllVacantRooms().stream()
+					.filter(room -> room.getMaxOccupants() >= occupants).collect(Collectors.toList());
+
+			if (!suitableVacantRooms.isEmpty()) {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				Calendar cal = Calendar.getInstance();
+				try {
+					// Check-in Date
+					if (walkIn) {
+						cal.setTime(new Date());
+					} else {
+						cal.setTime(dateFormat.parse(Console.getInputFromUser("Date of Check-In (dd/mm/yyyy)")));
+						cal.add(Calendar.HOUR_OF_DAY, 13);
+					}
+					reservation.setCheckIn(cal.getTime());
+
+					if (reservation.getCheckIn().compareTo(new Date()) < 0) {
+						Console.print("ERROR: Date of Check-In must be after today.");
+						Console.enterToContinue();
+						return;
+					}
+
+					// Check-out Date
+					cal.setTime(dateFormat.parse(Console.getInputFromUser("Date of Check-Out (dd/mm/yyyy)")));
+					cal.add(Calendar.HOUR_OF_DAY, 13);
+					reservation.setCheckOut(cal.getTime());
+
+					if (Console.getDifferenceDays(reservation.getCheckIn(), reservation.getCheckOut()) < 1) {
+						Console.print("ERROR: Date of Check-Out cannot be earlier than Date of Check-In.");
+						Console.enterToContinue();
+						return;
+					}
+
+					dateFormat = new SimpleDateFormat("EEE, d MMM yy, hh:mm aaa");
+					System.out.println();
+					System.out.format("%-25s: %s\n", "Date of Check-In", dateFormat.format(reservation.getCheckIn()));
+					System.out.format("%-25s: %s\n", "Date of Check-Out", dateFormat.format(reservation.getCheckOut()));
+					System.out.format("%-25s: %d\n", "Total Days",
+							reservation.numOfWeekdays() + reservation.numOfWeekends());
+
+					// Remove rooms if reservations that overlap selected dates
+					suitableVacantRooms.removeIf(room -> {
+						boolean remove = false;
+						for (Reservation r : reservationList) {
+							if (r.getRoomNumber().equalsIgnoreCase(room.getRoomNumber()))
+								if (Console.checkIfTwoDatesOverlap(reservation.getCheckIn(), reservation.getCheckOut(),
+										r.getCheckIn(), r.getCheckOut()))
+									remove = true;
+						}
+						return remove;
+					});
+					Rooms.printRoomList(suitableVacantRooms);
+
+					// Select of Rooms
+					String roomNumber = Console.getInputFromUser("Room No.").trim();
+					if (roomNumber.isEmpty()) {
+						return;
+					}
+
+					int count = 0;
+					for (Room room : Rooms.roomList) {
+						if (room.getRoomNumber().equalsIgnoreCase(roomNumber) && suitableVacantRooms.contains(room)) {
+							count = 1;
+							Console.printTitle("Confirmation Slip");
+							Guests.guestDetails(guestId);
+							Console.printTitle("Room Information");
+							System.out.format("** %-18s: %s\n", "Room Number", roomNumber);
+							System.out.format("** %-18s: %s\n", "Room Type",
+									Rooms.searchRoomByRoomNumber(roomNumber).getRoomName());
+							System.out.format("** %-18s: %s\n", "Room Rate",
+									Rooms.searchRoomByRoomNumber(roomNumber).getRate());
+							System.out.format("** %-18s: %s\n", "No. Adults", numOfAdults);
+							System.out.format("** %-18s: %s\n", "No. Child", numOfChildren);
+							System.out.format("** %-18s: %s\n", "Check In", reservation.getCheckIn());
+							System.out.format("** %-18s: %s\n", "Check Out", reservation.getCheckOut());
+							Console.printDivider();
+							boolean cf = Console
+									.stringToBool(Console.getInputFromUser("Correct information? Y (yes) or N (no)"));
+							if (!cf) {
+								return;
+							}
+
+							reservation.setId(Console.getNextUniqueId());
+							reservation.setRoomNumber(room.getRoomNumber());
+							reservation.setBaseRate(room.getRate());
+							if (walkIn) {
+								reservation.setStatus(ReservationStatus.CHECKIN.getStatus());
+								room.setAvailability(AvailabilityStatus.OCCUPIED.getStatus());
+							} else {
+								reservation.setStatus(ReservationStatus.RESERVED.getStatus());
+								//if (Console.checkIfTwoDatesSameDay(reservation.getCheckIn(), new Date()))
+									room.setAvailability(AvailabilityStatus.RESERVED.getStatus());
+							}
+							reservationList.add(reservation);
+							updateReservationList();
+							Console.print("Reservation #" + reservation.getId() + " made.");
+						}
+					}
+					if (count != 1) {
+						Console.print("Room number was not found");
+						return;
+					}
+					Rooms.updateRoomList();
+				} catch (ParseException e) {
+					Console.print("Sorry, you have enter an invalid date.");
+				}
+			} else {
+				Console.print(
+						"Sorry, number of occupants exceed the limit. " + "Please create a separate reservation.");
+			}
+		} else {
+			Console.print("Sorry, no such Guest ID.");
+		}
+		Console.enterToContinue();
+	}
+
+	/**
+	 * Display all reservations that are not expired.
+	 */
+	private void ListReservations() {
+		Console.printTitle("List Reservations");
+		printReservationList(reservationList);
+		Console.enterToContinue();
+	}
+
+	/**
+	 * Retrieve reservations that are checked-in.
+	 * 
+	 * @return list of Reservation objects
+	 */
+	public static List<Reservation> GetCheckinReservations() {
+		return reservationList.stream()
+				.filter(reservation -> reservation.getStatus().equalsIgnoreCase(ReservationStatus.CHECKIN.getStatus()))
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * Retrieve reservation by id.
+	 * 
+	 * @param id
+	 *            reservation id
+	 * @return reservation
+	 */
+	public static Reservation searchReservationById(int id) {
+		return reservationList.stream().filter(reservation -> reservation.getId() == id).findFirst().orElse(null);
+	}
+
+	/**
+	 * Check out reservation, update status to check out and check out date.
+	 * 
+	 * @param id
+	 *            reservation id
+	 * @param checkout
+	 *            check out date
+	 * @return true if updated, otherwise false
+	 */
+	public static boolean updateCheckOutReservation(int id, Date checkout) {
+		boolean updated = false;
+		for (Reservation reservation : reservationList) {
+			if (reservation.getId() == id) {
+				reservation.setStatus(ReservationStatus.CHECKOUT.getStatus());
+				reservation.setCheckOut(checkout);
+				updated = true;
+			}
+		}
+		// updateReservationList();
+		return updated;
+	}
+
+	/**
+	 * Print out a reservation and its current information
+	 */
+	private void PrintReservation() {
+		Console.printTitle("Print Reservation");
+		Reservation reservation = searchReservationById(Console.getIntegerFromUser("Reservation ID "));
+		if (reservation != null) {
+			CheckInOut.printReservationDetails("Reservation Details - ID No.: " + reservation.getId(), reservation);
+		} else {
+			Console.print("Sorry, no such reservation.");
+		}
+		Console.enterToContinue();
+	}
+
+	public static void printReservationList(List<Reservation> reservationList) {
+		System.out.println();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yy, hh:mm aaa");
+		TableBuilder builder = new TableBuilder("ID", "Guest Name", "Room", "Check-In Date", "Check-Out Date", "Days",
+				"Adults", "Children", "Base Rate", "Service", "Total", "Status");
+		for (Reservation reservation : reservationList) {
+			builder.addRow(String.valueOf(reservation.getId()),
+					Guests.searchGuestsById(reservation.getGuestId()).getName().toUpperCase(),
+					reservation.getRoomNumber(), dateFormat.format(reservation.getCheckIn()).toUpperCase(),
+					dateFormat.format(reservation.getCheckOut()).toUpperCase(),
+					String.valueOf(reservation.numOfWeekdays() + reservation.numOfWeekends()),
+					String.valueOf(reservation.getNumOfAdults()), String.valueOf(reservation.getNumOfChildren()),
+					NumberFormat.getCurrencyInstance().format(reservation.getBaseRate()),
+					NumberFormat.getCurrencyInstance().format(reservation.getRoomServiceTotal()),
+					NumberFormat.getCurrencyInstance().format(reservation.getTotalBill()),
+					reservation.getStatus().toUpperCase());
+		}
+		builder.print();
+	}
+
+	/**
+	 * To cancel a reservation
+	 */
+	public void CancelReservation() {
+		Console.printTitle("Reserved Reservation");
+		List<Reservation> suitableCancel = reservationList.stream()
+				.filter(reservation -> reservation.getStatus().equalsIgnoreCase(ReservationStatus.RESERVED.getStatus()))
+				.collect(Collectors.toList());
+		printReservationList(suitableCancel);
+		if (!suitableCancel.isEmpty()) {
+			Console.print("Which Reservation do you want to cancel");
+			int cancelledID = Console.getOptionFromUser();
+			int count = 0;
+			for (Reservation reserve : reservationList) {
+				if ((reserve.getId() == cancelledID) && suitableCancel.contains(reserve)) {
+					count = 1;
+					CheckInOut.printReservationDetails("Cancel Reservation Details - ID No.: " + cancelledID, reserve);
+					boolean confirm = Console
+							.stringToBool(Console.getInputFromUser("Confirm to Cancel? Y (yes) or N (no)"));
+					if (confirm) {
+						reserve.setStatus(ReservationStatus.CANCELLED.getStatus());
+						Console.print("Reservation #" + cancelledID + " was successfully cancelled.");
+					}
+				}
+			}
+			if (count == 0) {
+				Console.print("Reservation Number was not in the list");
+			}
+		}
+		Console.enterToContinue();
+	}
+
+	public static void updateReservationList() {
+		Storage.storeReservationList(reservationList);
+	}
+}

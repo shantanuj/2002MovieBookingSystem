@@ -9,4 +9,5 @@ The __class diagram__ was as follows-
 
 
 The __sequence diagram__ was as follows-
+
 ![alt-text](https://cloud.githubusercontent.com/assets/4751368/18407973/4e02d0fa-7752-11e6-8e3b-200ad0ce5c2a.jpg "Sequence diagram")
